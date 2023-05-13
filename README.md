@@ -1,3 +1,18 @@
+This is my implementation of solutions to the Rustlings program that aims to help us learn and better understand the Rust programming language!
+
+If you to want to learn more about Rust, checkout the aswome work they did : https://github.com/rust-lang/rustlings
+
+
+
+
+
+
+
+
+
+
+
+
 # rustlings 🦀❤️
 
 Greetings and welcome to `rustlings`. This project contains small exercises to get you used to reading and writing Rust code. This includes reading and responding to compiler messages!
