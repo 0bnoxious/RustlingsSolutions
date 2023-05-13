@@ -14,8 +14,6 @@
 
 // Execute `rustlings hint hashmaps3` or use the `hint` watch subcommand for a hint.
 
-// I AM NOT DONE
-
 use std::collections::HashMap;
 
 // A structure to store team name and its goal details.
@@ -40,7 +38,46 @@ fn build_scores_table(results: String) -> HashMap<String, Team> {
         // will be the number of goals conceded from team_2, and similarly
         // goals scored by team_2 will be the number of goals conceded by
         // team_1.
+
+        let mut team = Team {
+            name: team_1_name.clone(),
+            goals_scored: team_1_score.clone(),
+            goals_conceded: team_2_score.clone(),
+        };
+        let mut team2 = Team {
+            name: team_2_name.clone(),
+            goals_scored: team_2_score.clone(),
+            goals_conceded: team_1_score.clone(),
+        };
+        
+        //if team1 is already in the hashmap, sum the scores
+        if let Some(team) = scores.get_mut(&team_1_name.clone()){
+            team.goals_scored=team.goals_scored+team_1_score.clone();
+            team.goals_conceded=team.goals_conceded+team_2_score.clone();
+        } else {
+            scores.insert(team_1_name.clone(),team);
+        } 
+
+        //if team2 is already in the hashmap, sum the scores
+        if let Some(team2) = scores.get_mut(&team_2_name.clone()){
+            team2.goals_scored=team2.goals_scored+team_2_score.clone();
+            team2.goals_conceded=team2.goals_conceded+team_1_score.clone();
+        } else {
+            scores.insert(team_2_name.clone(),team2);
+        } 
+        
+        /*println!("inserting into team1 {} score : {}  conceded : {}", team_1_name.clone(), team_1_score.clone(), team_2_score.clone());
+        scores.entry(team_1_name.clone()).or_insert(team);
+
+        println!("inserting into team2 {} score : {}  conceded : {}", team_2_name.clone(), team_2_score.clone(), team_1_score.clone());
+        scores.entry(team_2_name.clone()).or_insert(team2);*/
+
     }
+    println!("final scores : ");
+    for (key, value) in scores.iter() {
+        println!("{} scored {} and conceaded {}", key, value.goals_scored, value.goals_conceded);
+    }
+
     scores
 }
 
